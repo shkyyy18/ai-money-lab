@@ -1,0 +1,10 @@
+# 内部设计文档(不公开, 仓库蓝图)
+DESIGN.md
+
+# Python
+__pycache__/
+*.pyc
+
+# 本地运行产物
+*.log
+.DS_Store
