@@ -8,8 +8,7 @@ ops/
 __pycache__/
 *.pyc
 
-# 实测代码与本地产物(付费层: 净利>0 才公开完整复刻指南; app.py 含本机路径)
-experiments/*/app.py
+# 实测本地产物(代码 build-in-public; 复刻指南净利>0 才付费开放)
 experiments/*/events.jsonl
 
 # 本地运行产物

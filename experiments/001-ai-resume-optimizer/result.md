@@ -37,4 +37,4 @@
 - 引流：长尾内容截流，不买量
 
 ---
-_下一个动作：服务已跑在 localhost:5011（浏览器可直接实测）；要拿真实转化信号需 Day 2 部署公网 + Day 3 导流。回复"部署"启动 Day 2，或"出导流稿"写内容。_
+_下一个动作：MVP 代码已 **build-in-public**（独立可跑：`pip install -r requirements.txt` + `ZHIPU_API_KEY` + `python app.py` → localhost:5011，3 步）。用户拿这个 MVP 去其他平台拆解做内容；Claude 这边等 star/转化信号决定 Day 2（部署公网 + 接真支付）。_
