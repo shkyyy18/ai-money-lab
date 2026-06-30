@@ -50,6 +50,10 @@ _🔥 [001 · AI 简历优化器](./experiments/001-ai-resume-optimizer/result.m
 
 被「AI 副业」标题党割烦了。与其猜哪个真，不如每个都试一遍，把结果公开。**省下所有人的试错成本。** 失败的也发，因为那同样值钱。
 
+## 🔗 相关项目
+
+- **[personal-health-sync](https://github.com/shkyyy18/personal-health-sync)** — 个人健康数据多源自动归集（Strava + 米家体脂秤 → FHIR-lite 统一查询），同一作者的工程实践，配套的「自己造工具」思路。
+
 ## 订阅 / 关注
 
 - 📰 RSS（仓库自带）
