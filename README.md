@@ -18,7 +18,7 @@
 
 ## 🔥 这周在测
 
-_🚧 仓库刚建，第 1 个实测项目启动中（见 [experiments/](./experiments/)）_
+_🔥 [001 · AI 简历优化器](./experiments/001-ai-resume-optimizer/result.md) — **本周实测**：不买量、只靠 GitHub 自然流量，能不能拿到第一笔 ¥9.9？[Lean Canvas 已公开](./experiments/001-ai-resume-optimizer/lean_canvas.md)，MVP 本地跑通，进度实时更新。代码与复刻指南在净利 > 0 后解锁 —— **⭐ 点星跟进结果**。_
 
 ## 💰 收入总榜（实测过，真实数据）
 

@@ -46,8 +46,8 @@
 - **Reach** (1-10): 受众多大
 - **Impact** (1-10): 单次价值多大
 - **Confidence** (1-10): 我对以上判断的把握（有案例=高，拍脑袋=低）
-- **Effort** (1-10): 实现成本（越低分越高... 实际 Effort 用 10−成本 转正，使高分=低成本）
-- **Score** = Reach × Impact × Confidence ÷ (10 − Effort + 1)
+- **Effort** (1-10): 实现工作量（越大数越大，与标准 RICE 一致；高分=低成本）
+- **Score** = Reach × Impact × Confidence ÷ Effort
 
 ## 拒测标准（写明理由，反增信任）
 

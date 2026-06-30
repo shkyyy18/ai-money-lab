@@ -1,9 +1,16 @@
 # 内部设计文档(不公开, 仓库蓝图)
 DESIGN.md
 
+# 内部运营指令(cron用, 不公开)
+ops/
+
 # Python
 __pycache__/
 *.pyc
+
+# 实测代码与本地产物(付费层: 净利>0 才公开完整复刻指南; app.py 含本机路径)
+experiments/*/app.py
+experiments/*/events.jsonl
 
 # 本地运行产物
 *.log
