@@ -20,6 +20,8 @@
 
 _🔥 [001 · AI 简历优化器](./experiments/001-ai-resume-optimizer/result.md) — **本周实测**：不买量、只靠 GitHub 自然流量，能不能拿到第一笔 ¥9.9？[Lean Canvas 已公开](./experiments/001-ai-resume-optimizer/lean_canvas.md)，MVP 本地跑通，进度实时更新。代码与复刻指南在净利 > 0 后解锁 —— **⭐ 点星跟进结果**。_
 
+_🆕 [今日精选 2026-07-02](./ideas/2026-07-02.md)：4 个创意过第一性原理 edge 门——探店文案生成器（首选，吃本地生活 edge）/ 外卖复盘选品 / 销售跟进副驾 / PDF 转扫描件（edge 门杀）。001 仍进行中，暂不开新实验。_
+
 ## 💰 收入总榜（实测过，真实数据）
 
 | # | 项目 | 投入 | 收入 | 净利 | 可复刻 | 报告 |
@@ -50,14 +52,11 @@ _🔥 [001 · AI 简历优化器](./experiments/001-ai-resume-optimizer/result.m
 
 被「AI 副业」标题党割烦了。与其猜哪个真，不如每个都试一遍，把结果公开。**省下所有人的试错成本。** 失败的也发，因为那同样值钱。
 
-## 🔗 相关项目
-
-- **[personal-health-sync](https://github.com/shkyyy18/personal-health-sync)** — 个人健康数据多源自动归集（Strava + 米家体脂秤 → FHIR-lite 统一查询），同一作者的工程实践，配套的「自己造工具」思路。
-
 ## 订阅 / 关注
 
 - 📰 RSS（仓库自带）
 - _小红书 / 公众号 / 即刻：验证跑通后开通_
+- 📅 最近更新：2026-07-02
 
 ---
 
