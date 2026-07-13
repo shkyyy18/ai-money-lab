@@ -1,73 +1,119 @@
-# AI Money Lab 🧪
+<div align="center">
 
-> **别人发 idea，我们发实测结果。**
-> 每周实测 1 个「声称能赚钱」的 AI 项目，真做一遍，晒真实数据，记坑。
-> **失败也发。防割韭菜。**
+# AI Money Lab
 
-[![Updated](https://img.shields.io/badge/updated-daily-brightgreen)](./ideas/)
-[![Experiments](https://img.shields.io/badge/experiments-0%20done-orange)](./experiments/)
-[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+### An evidence ledger for small AI business experiments
 
----
+Build a tiny offer, define the channel and stop rule, publish the result, and keep the evidence level machine-checkable. Failed and inconclusive experiments stay visible.
 
-## 🎯 这是什么
+[![CI](https://github.com/shkyyy18/ai-money-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/shkyyy18/ai-money-lab/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/shkyyy18/ai-money-lab)](https://github.com/shkyyy18/ai-money-lab/releases/latest)
+[![Closed experiments](https://img.shields.io/badge/closed%20experiments-1-blue)](experiments/)
+[![Verified revenue](https://img.shields.io/badge/verified%20revenue-CNY%200-lightgrey)](leaderboard.md)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-满屏「AI 月入 X 万」不知道哪个真？这里只放**亲自实测**过的项目——每个都真做 MVP、真导流、晒真实收入截图、记踩过的坑。**赚了说赚了多少，没赚也照发。**
+[**Experiment ledger**](leaderboard.md) | [Methodology](methodology.md) | [Nominate an experiment](https://github.com/shkyyy18/ai-money-lab/issues/new?template=nominate.yml) | [Contributing](CONTRIBUTING.md)
 
-数据来源：[每日 AI 创意灵感](./ideas/)（从 GitHub / awesome-list / 独立开发者社区采集 + AI 筛选 + RICE 评分）→ 挑高分的进 [实测队列](./experiments/)。
+**Machine-readable status | Explicit stop rules | Evidence tiers | No fake success stories**
 
-## 🔥 这周在测
+</div>
 
-_❌ [001 · AI 简历优化器](./experiments/001-ai-resume-optimizer/result.md) — **已归档（失败，2026-07-06）**：GitHub 导流拿不到第一笔 ¥9.9，判受众错配（用户 edge 在抖/红/微信，不在开发者社区）。进 [失败榜](#-失败榜同样有价值)。失败也发——这是反共识信任锚。_
+![AI Money Lab evidence ledger](docs/assets/experiment-ledger.svg)
 
-_⏸️ **下一个实测 002（待启动）**：🐟 **闲鱼 AI 技能服务快闪店**（RICE 160，[见 ideas/2026-07-06 #1](./ideas/2026-07-06.md)）——把「AI 帮你做信息图 / 数据可视化 / 短视频脚本」打包成闲鱼标品服务，自媒体引流 → 闲鱼成交，最快 3 天验出现金。Effort 最低、链路最短。_
+## Current ledger
 
-_🆕 [今日精选 2026-07-10](./ideas/2026-07-10.md)：付费方收窄为**自媒体想入行者**，从已采集的多平台内容生产骨架蒸馏出 3 个原型 B 候选——账号定位急诊室（RICE 168.00）/ 一稿四发成品改稿室（130.67）/ 本地生活探店号 7 日冷启动包（112.00）。今日采集与深挖均断档，所有同类收入证据诚实标记待验证；泛 AI 工具和原型 C 继续 KILL。三项只入候选，不启动 MVP。_
+| Experiment | Status | Revenue | Evidence | What the record proves |
+|---|---|---:|---|---|
+| [001 - AI resume optimizer](experiments/001-ai-resume-optimizer/result.md) | Inconclusive, stopped | CNY 0 | Self-test only | The MVP ran locally; the acquisition hypothesis was not tested with external traffic. |
 
-## 💰 收入总榜（实测过，真实数据）
+Current machine-validated totals:
 
-| # | 项目 | 投入 | 收入 | 净利 | 可复刻 | 报告 |
-|---|------|------|------|------|--------|------|
-| - | _暂无，实测进行中_ | - | - | - | - | - |
+- 1 closed experiment;
+- 0 succeeded;
+- 0 verified failures;
+- 1 inconclusive;
+- CNY 0 verified revenue.
 
-> 榜单只收**实测完成**的项目，数据附截图，不编。
+## Why this project exists
 
-## 💀 失败榜（同样有价值）
+Public build logs often blur three different things: a product that runs, a landing page that receives visits, and a business that receives payment. AI Money Lab keeps them separate.
 
-| # | 项目 | 为什么没成 |
-|---|------|-----------|
-| - | _暂无_ | - |
+A local self-test can prove that an MVP executes. It cannot prove demand, willingness to pay, acquisition efficiency, or revenue. When evidence is missing, the correct result is **inconclusive**, not a dramatic success or failure claim.
 
-> 99% 的赚钱号只发成功。我们发失败——这是反共识，也是信任锚。
+## Evidence ladder
 
-## 📮 命名下一个实测
+Every `experiment.json` declares one evidence level:
 
-想看我们测什么？[提一个 Issue](../../issues/new) 用「项目提名」模板，票最高的下周测。
+| Level | Meaning |
+|---|---|
+| `none` | No execution evidence has been recorded. |
+| `self-test` | The author tested the product locally. |
+| `public-metrics` | Public or redacted acquisition/conversion metrics are attached to the report. |
+| `verified-revenue` | Revenue evidence is attached in a privacy-safe, independently reviewable form. |
 
-## 📖 怎么用这个仓库
+The repository never upgrades evidence based on narrative confidence alone.
 
-- 想找创意 → [每日精选 ideas/](./ideas/)（日更，RICE 排序）
-- 想看怎么算「赚了」→ [实测方法论 methodology.md](./methodology.md)
-- 想看实测全过程 → [experiments/](./experiments/)（每个项目一个目录，过程/数据/坑/复刻）
+## Audit the ledger locally
 
-## 🤔 为什么做这个
+The validator uses only the Python standard library.
 
-被「AI 副业」标题党割烦了。与其猜哪个真，不如每个都试一遍，把结果公开。**省下所有人的试错成本。** 失败的也发，因为那同样值钱。
+```bash
+git clone https://github.com/shkyyy18/ai-money-lab.git
+cd ai-money-lab
+python lab.py validate
+python lab.py summary
+python -m unittest discover -s tests -v
+```
 
-## 订阅 / 关注
+CI checks required fields, unique IDs, dates, statuses, non-negative revenue, evidence levels, and report links.
 
-- 📰 RSS（仓库自带）
-- _小红书 / 公众号 / 即刻：验证跑通后开通_
-- 📅 最近更新：2026-07-10
+## Experiment lifecycle
 
----
+1. Write the customer, problem, offer, price, acquisition channel, metric, and stop rule.
+2. Set the initial evidence level to `none`.
+3. Build the smallest test that can exercise the hypothesis.
+4. Record only observed traffic, conversion, cost, and revenue.
+5. Stop on the predeclared rule or explain the deviation.
+6. Publish the manifest and human-readable report, including missing evidence.
 
-## ⚖️ 原则
+See [methodology.md](methodology.md) for the complete rules.
 
-1. **不编数据** — 收入截图必须真实，编一次信任全毁
-2. **失败也发** — 反共识差异化，信任基础
-3. **拒测擦边** — 违法违规/需大量本金/灰色项目拒测并写明理由
-4. **假说写清来源** — 让你知道我在验证谁的 claim（防割）
-5. **没赚到钱永不收费** — result-based，付费层只对验证赚到钱的项目开
+## What belongs here
 
-_Maintained with a multi-agent Claude Code system. 创意源见 [inspire_system](../inspire_system/)._
+Good experiments have a narrow question and an evidence plan. Examples:
+
+- Will a specific customer segment click or request a demo from one concrete offer?
+- Can a productized AI workflow save a measurable amount of time for a defined role?
+- Will users pay a stated price through a stated channel?
+
+This is not a repository for generic AI business ideas, fabricated screenshots, copied revenue claims, or unbounded "build and hope" projects.
+
+## Contribute
+
+You can:
+
+- nominate a bounded experiment through the issue template;
+- improve the validator and evidence schema;
+- review a result for contradictions or unsupported claims;
+- contribute a privacy-safe evidence pattern.
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md). Do not submit private customer data, credentials, fabricated metrics, or AI-generated proof.
+
+## Repository map
+
+```text
+experiments/<id>-<slug>/
+  experiment.json   machine-readable status and evidence
+  result.md          human-readable outcome and limitations
+lab.py               offline validator and summary command
+methodology.md       evidence and classification rules
+leaderboard.md       generated-from-records public ledger view
+```
+
+## Project status
+
+Version 0.1 establishes the evidence contract and records one inconclusive experiment. Experiment 002 will not be opened until its customer, channel, stop rule, and evidence plan are explicit.
+
+## License
+
+MIT. Experiment reports are educational records, not financial or business guarantees.

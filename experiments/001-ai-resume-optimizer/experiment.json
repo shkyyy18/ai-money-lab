@@ -1,0 +1,12 @@
+{
+  "id": "001",
+  "name": "AI resume optimizer",
+  "status": "inconclusive",
+  "started_at": "2026-06-30",
+  "completed_at": "2026-07-06",
+  "revenue": 0,
+  "currency": "CNY",
+  "evidence_level": "self-test",
+  "report": "result.md",
+  "conclusion": "The MVP worked locally, but the GitHub-only acquisition hypothesis was not tested with external traffic. The experiment was stopped rather than presenting self-tests as market validation."
+}

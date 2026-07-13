@@ -1,58 +1,23 @@
-# 🧪 Experiments · 实测记录
+﻿# Experiments
 
-每个目录 = 一个实测项目，含全过程、真实数据、坑、复刻指南。
+Each experiment is an auditable folder, not a success-story post.
 
-## 实测报告模板
+- `experiment.json` contains machine-readable status, dates, evidence level, and revenue.
+- `result.md` explains what was observed, what was missing, and why the final status was chosen.
+- Optional MVP code and supporting notes must be safe to publish and clearly scoped.
 
-每个 `NNN-项目名/README.md` 用这个结构：
+## Status vocabulary
 
-```markdown
-# 实验 NNN: [项目名] — [一句话]
+- `planned`: not started.
+- `running`: channel test active.
+- `succeeded`: declared success rule met with adequate evidence.
+- `failed`: declared failure rule met with adequate evidence.
+- `inconclusive`: stopped without enough evidence to classify success or failure.
 
-## 假说
-来源:[池里哪个$案例/谁声称的]。声称:...
+## Ledger
 
-## 投入
-- 时间: X 天 (每天 Y h)
-- 成本: $X (API/域名/...)
-- 技能: ...
+| ID | Experiment | Status | Period |
+|---|---|---|---|
+| 001 | [AI resume optimizer](001-ai-resume-optimizer/result.md) | Inconclusive | 2026-06-30 to 2026-07-06 |
 
-## 过程
-- Day 1: ...
-- Day 2: ...
-
-## 结果 (真实数据, 附截图)
-- 收入: $X
-- 流量: X 访客
-- 转化: X%
-- 净利: $X
-
-## 结论
-✅ 赚了 / ❌ 没赚。可复刻性: ⭐⭐⭐⭐ (X/5)
-
-## 坑
-1. ...
-
-## 复刻指南 (完整版付费, 这里是预览)
-1. 选品: ...
-2. MVP: ...
-3. 引流: ...
-```
-
-## 当前队列
-
-| # | 项目 | 状态 | 启动日 |
-|---|------|------|--------|
-| 001 | AI 简历优化器（见 `001-ai-resume-optimizer/`） | ❌ **已归档（失败）** 2026-07-06 — 受众错配（GitHub 导流失败，泛 AI 工具，违反 ①-补 edge 门）。进 [leaderboard 失败榜 F1](../leaderboard.md)。 | 2026-06-30 |
-| 002 | _待启动_：闲鱼 AI 技能服务快闪店（RICE 160，快测首选） | ⏸️ **待用户「推送 ai-money-lab」闸口确认** | — |
-
-> 2026-07-09 核查修正：原表标 001 为「🔄 进行中」与 leaderboard.md / result.md 不一致，现已对齐。实测队列实际已空，可开 002。
-
-## 规则
-
-- 实测数据**必须真实**（截图），Claude 不编
-- 失败的也建目录、也写报告（进失败榜）
-- 复刻指南只在**净利>0** 时开放完整付费版
-
----
-_实测选品来自 [ideas/](../ideas/) 高 RICE 创意。_
+Experiment 002 remains unopened until its customer, channel, stop rule, and evidence plan are fixed.

@@ -1,64 +1,75 @@
-# 实测方法论 · Methodology
+﻿# AI Money Lab methodology
 
-> 怎么算「实测」、怎么算「赚了」、为什么失败也发。这是这个仓库的公平规则，公开透明。
+## 1. Start with a falsifiable question
 
-## 什么是「实测」
+An experiment must state a defined customer, problem, offer, price, acquisition channel, primary metric, time or spend boundary, and stop rule. "Build an AI app and see what happens" is not an experiment.
 
-不是看别人文章转述，不是拍脑袋判断。**实测 = 自己真做一遍**：
+## 2. Separate product proof from market proof
 
-1. **真做 MVP** — 用最短路径做出能用的最小产品（通常 1-3 天，Claude Code 辅助）
-2. **真导流** — 挂出去，导真实流量（不是只发个截图）
-3. **真收/真点击** — 接收款或 fake-door 购买按钮，看真实转化
-4. **晒真实数据** — 收入、流量、转化率附截图，不编不夸
+- A local self-test can prove that software executes.
+- Public traffic can test whether a channel reaches relevant people.
+- Conversion can test whether the offer produces a stated action.
+- Verified payment can test willingness to pay.
 
-## 成本口径（全部算进去）
+Evidence from one layer must not be presented as proof of a later layer.
 
-| 类型 | 计入 |
+## 3. Evidence levels
+
+| Level | Required evidence |
 |---|---|
-| 时间 | 每天×小时×天数（Claude 辅助部分也标注） |
-| 金钱 | API、域名、服务器、流量费等所有支出 |
-| 技能 | 需要的前置技能（影响可复刻性评分） |
+| `none` | No execution evidence. |
+| `self-test` | Reproducible local test or sanitized execution record. |
+| `public-metrics` | Public or redacted channel and conversion metrics with dates and definitions. |
+| `verified-revenue` | Privacy-safe payment evidence tied to the experiment period and currency. |
 
-**净利 = 收入 − 金钱成本**（时间另算，因为每个人时间价值不同）。
+Narrative confidence never upgrades the evidence level.
 
-## 「赚了」的判定
+## 4. Status definitions
 
-- ✅ **赚了**: 净利 > 0 **且** 有可复刻路径（别人按指南能再现）
-- ⚠️ **打平**: 净利 ≈ 0，但积累了可复用资产（代码/受众/认知）
-- ❌ **没赚**: 净利 ≤ 0，或赚了但不可复刻（靠运气/一次性）
+- `planned`: the experiment has not started.
+- `running`: the channel test is active and the stop rule has not been reached.
+- `succeeded`: the predeclared success rule was met with suitable evidence.
+- `failed`: the predeclared failure rule was met with suitable evidence.
+- `inconclusive`: execution ended without enough evidence to classify success or failure.
 
-## 可复刻性评分（⭐1-5）
+A working MVP with no external traffic is normally inconclusive, not succeeded or failed.
 
-别人按我们的复刻指南，能在**相似成本**内再现的概率：
-- ⭐⭐⭐⭐⭐ 任何人按指南能复刻
-- ⭐⭐⭐ 需要一定技术/资源
-- ⭐ 靠特殊资源/运气，难复刻
+## 5. Revenue rules
 
-## 为什么失败也发
+Revenue is recorded in the manifest currency. Non-zero revenue requires `verified-revenue` evidence before it can be promoted in the public total. Refunds, taxes, fees, and costs must be explained in the report when relevant. Unknown cost is written as unknown, not zero.
 
-1. **失败同样值钱** — 知道哪个不行，省所有人试错成本
-2. **反共识信任锚** — 99% 赚钱号只发成功，发失败=我们不一样
-3. **防幸存者偏差** — 只发成功会误导（看似遍地黄金）
+## 6. Privacy and security
 
-## RICE 评分口径
+Reports must redact names, email addresses, account identifiers, tokens, API keys, payment IDs, resumes, and customer documents. Synthetic fixtures are preferred. Public issues and pull requests must never contain private customer material.
 
-创意优先级用 RICE：
-- **Reach** (1-10): 受众多大
-- **Impact** (1-10): 单次价值多大
-- **Confidence** (1-10): 我对以上判断的把握（有案例=高，拍脑袋=低）
-- **Effort** (1-10): 实现工作量（越大数越大，与标准 RICE 一致；高分=低成本）
-- **Score** = Reach × Impact × Confidence ÷ Effort
+## 7. Stop rules
 
-## 拒测标准（写明理由，反增信任）
+A stop rule should be observable and bounded, for example:
 
-- ❌ 违法违规（黑灰产、欺诈）
-- ❌ 需大量本金（炒股杠杆、囤货）— 普通人不可复刻
-- ❌ 纯靠流量倒卖无价值内容
-- ❌ 擦边敏感（写明拒测，不偷偷测）
+- stop after 200 relevant landing-page visits if fewer than 3 qualified requests are received;
+- stop after CNY 500 in declared acquisition spend;
+- stop after 14 days if the stated channel cannot produce measurable traffic.
 
-## 付费层原则
+If the rule changes, record the original rule, the change date, and the reason.
 
-**没赚到钱的项目，永不收费。** 只有实测净利 > 0 的项目，才开对应「复刻指南」付费。这是 result-based 信任锚——我证明赚到钱了，你才付费学怎么复刻。
+## 8. Required experiment files
 
----
-_本方法论本身会随实测迭代（发现漏掉的维度就补）。变更记入 git 历史。_
+Each experiment folder contains:
+
+```text
+experiment.json   machine-readable status, dates, revenue and evidence level
+result.md          outcome, observed evidence, missing evidence and conclusion
+```
+
+Supporting MVP code or evidence notes may be included when they are safe and licensed.
+
+## 9. Validation
+
+Run:
+
+```bash
+python lab.py validate
+python lab.py summary
+```
+
+CI rejects missing fields, duplicate IDs, invalid dates or statuses, negative revenue, invalid evidence levels, and missing reports. Human review remains responsible for deciding whether attached evidence supports the claim.

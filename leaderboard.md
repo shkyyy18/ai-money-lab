@@ -1,30 +1,26 @@
-# 📊 收入榜 · Leaderboard
+﻿# AI Money Lab ledger
 
-> 所有**实测完成**的 AI 变现项目，按真实净利排序。数据附截图，不编。
-> 失败项目同样列出（见底部失败榜）—— 知道哪个不行，同样值钱。
+> Revenue totals include only amounts declared in machine-readable experiment manifests. A value of zero means no verified revenue has been recorded; it does not imply zero cost.
 
-## 💰 收入总榜
+## Current ranking
 
-| # | 项目 | 投入(时间·金钱) | 收入 | 净利 | 可复刻 | 结论 | 报告 |
-|---|------|-----------------|------|------|--------|------|------|
-| - | _实测进行中，尚无完成项_ | - | - | - | - | - | - |
+The project does not rank experiments by storytelling quality. Records are ordered by experiment ID and display status, evidence, and revenue separately.
 
-_净利 = 收入 − 金钱成本（时间另算）。可复刻 ⭐1-5 见 [methodology.md](./methodology.md)。_
+| ID | Experiment | Status | Revenue | Evidence | Conclusion | Report |
+|---|---|---|---:|---|---|---|
+| 001 | AI resume optimizer | Inconclusive | CNY 0 | `self-test` | MVP ran locally; acquisition hypothesis untested | [Result](experiments/001-ai-resume-optimizer/result.md) |
 
-## 💀 失败榜
+## Machine-validated totals
 
-| # | 项目 | 投入 | 收入 | 为什么没成 | 报告 |
-|---|------|------|------|-----------|------|
-| - | _暂无_ | - | - | - | - |
+- Experiments: **1**
+- Closed: **1**
+- Succeeded: **0**
+- Failed with sufficient evidence: **0**
+- Inconclusive: **1**
+- Verified revenue recorded: **CNY 0**
 
-## 📈 累计
+Run `python lab.py summary` to calculate totals from the `experiment.json` files.
 
-- 实测项目数（完成）: **0**
-- 🔄 进行中: **1**（001 AI 简历优化器，见 [experiments/001-ai-resume-optimizer/](./experiments/001-ai-resume-optimizer/)）
-- 累计收入: **$0**
-- 累计成本: **$0**
-- 累计净利: **$0**
-- 成功率: **—**（0/0 完成）
+## Interpretation
 
----
-_每次实测完成自动更新（Claude 维护）。历史归档见 git。_
+The first record is intentionally not labelled a verified failure. The product self-test and the market-acquisition test are different hypotheses, and only the first was exercised.

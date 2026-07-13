@@ -1,0 +1,34 @@
+﻿name: Nominate an experiment
+description: Propose a bounded AI business experiment with an explicit evidence plan
+title: "[Experiment]: "
+labels:
+  - experiment
+body:
+  - type: textarea
+    id: hypothesis
+    attributes:
+      label: Customer, problem, and offer
+      description: Define one customer segment, one painful problem, the proposed offer, and the stated price.
+    validations:
+      required: true
+  - type: textarea
+    id: channel
+    attributes:
+      label: Acquisition channel and metric
+      description: State exactly how relevant people will see the offer and which primary conversion metric will be measured.
+    validations:
+      required: true
+  - type: textarea
+    id: stop-rule
+    attributes:
+      label: Stop rule and evidence plan
+      description: Set a time, traffic, or spend boundary and describe the privacy-safe evidence that can support the result.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety confirmation
+      options:
+        - label: I will not submit private customer data, credentials, fabricated metrics, or AI-generated proof.
+          required: true
