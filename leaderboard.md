@@ -8,7 +8,7 @@ The project does not rank experiments by storytelling quality. Records are order
 
 | ID | Experiment | Status | Revenue | Evidence | Conclusion | Report |
 |---|---|---|---:|---|---|---|
-| 001 | AI resume optimizer | Inconclusive | CNY 0 | `self-test` | MVP ran locally; acquisition hypothesis untested | [Result](experiments/001-ai-resume-optimizer/result.md) |
+| 001 | AI resume optimizer | Inconclusive | CNY 0 | `self-test` | The MVP worked locally, but the GitHub-only acquisition hypothesis was not tested with external traffic. The experiment was stopped rather than presenting self-tests as market validation. | [Result](experiments/001-ai-resume-optimizer/result.md) |
 
 ## Machine-validated totals
 
@@ -19,7 +19,7 @@ The project does not rank experiments by storytelling quality. Records are order
 - Inconclusive: **1**
 - Verified revenue recorded: **CNY 0**
 
-Run `python lab.py summary` to calculate totals from the `experiment.json` files.
+Run `python lab.py leaderboard` to regenerate this file from the `experiment.json` records; totals match `python lab.py summary`.
 
 ## Interpretation
 

@@ -18,6 +18,8 @@ Build a tiny offer, define the channel and stop rule, publish the result, and ke
 
 </div>
 
+The `closed experiments` and `verified revenue` badge values above are refreshed from the experiment records by `python lab.py leaderboard`.
+
 ![AI Money Lab evidence ledger](docs/assets/experiment-ledger.svg)
 
 ## Current ledger
@@ -62,6 +64,7 @@ git clone https://github.com/shkyyy18/ai-money-lab.git
 cd ai-money-lab
 python lab.py validate
 python lab.py summary
+python lab.py leaderboard
 python -m unittest discover -s tests -v
 ```
 
@@ -91,12 +94,16 @@ $ python lab.py summary
 $ python -m unittest discover -s tests -v
 test_completed_status_requires_date_and_conclusion (test_lab.LabTests.test_completed_status_requires_date_and_conclusion) ... ok
 test_completion_date_cannot_precede_start (test_lab.LabTests.test_completion_date_cannot_precede_start) ... ok
+test_leaderboard_renders_table_and_totals (test_lab.LabTests.test_leaderboard_renders_table_and_totals) ... ok
 test_missing_report_fails_validation (test_lab.LabTests.test_missing_report_fails_validation) ... ok
 test_nonzero_revenue_requires_verified_evidence (test_lab.LabTests.test_nonzero_revenue_requires_verified_evidence) ... ok
+test_repository_leaderboard_is_current (test_lab.LabTests.test_repository_leaderboard_is_current) ... ok
 test_repository_manifests_are_valid (test_lab.LabTests.test_repository_manifests_are_valid) ... ok
+test_summary_aggregates_manifests (test_lab.LabTests.test_summary_aggregates_manifests) ... ok
+test_sync_readme_badges_updates_static_values (test_lab.LabTests.test_sync_readme_badges_updates_static_values) ... ok
 
 ----------------------------------------------------------------------
-Ran 5 tests in 0.012s
+Ran 9 tests in 0.026s
 
 OK
 ```
@@ -150,7 +157,7 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md). Do not submit private customer data, cr
 experiments/<id>-<slug>/
   experiment.json   machine-readable status and evidence
   result.md          human-readable outcome and limitations
-lab.py               offline validator and summary command
+lab.py               offline validator, summary, and leaderboard generator
 methodology.md       evidence and classification rules
 leaderboard.md       generated-from-records public ledger view
 ```

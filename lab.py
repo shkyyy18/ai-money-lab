@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import argparse
 import json
@@ -108,9 +108,103 @@ def summary(root: Path) -> dict[str, Any]:
     }
 
 
+def money(amount: float, currency: str) -> str:
+    value = int(amount) if float(amount).is_integer() else round(float(amount), 2)
+    return f"{currency} {value}"
+
+
+def existing_section(path: Path, heading: str) -> str:
+    if not path.is_file():
+        return ""
+    text = path.read_bytes().decode("utf-8-sig").replace("\r\n", "\n")
+    marker = text.find(heading)
+    if marker == -1:
+        return ""
+    return text[marker:].strip("\n")
+
+
+def render_leaderboard(root: Path) -> str:
+    records = manifests(root)
+    stats = summary(root)
+    currency = stats["currencies"][0] if stats["currencies"] else "CNY"
+    lines = [
+        "# AI Money Lab ledger",
+        "",
+        "> Revenue totals include only amounts declared in machine-readable experiment manifests. A value of zero means no verified revenue has been recorded; it does not imply zero cost.",
+        "",
+        "## Current ranking",
+        "",
+        "The project does not rank experiments by storytelling quality. Records are ordered by experiment ID and display status, evidence, and revenue separately.",
+        "",
+        "| ID | Experiment | Status | Revenue | Evidence | Conclusion | Report |",
+        "|---|---|---|---:|---|---|---|",
+    ]
+    for path, item in records:
+        report = str(item["report"])
+        label = Path(report).stem.replace("-", " ").title()
+        link = f"experiments/{path.parent.name}/{report}"
+        lines.append(
+            f"| {item['id']} | {item['name']} | {str(item['status']).title()} "
+            f"| {money(float(item['revenue']), item['currency'])} | `{item['evidence_level']}` "
+            f"| {item.get('conclusion', '')} | [{label}]({link}) |"
+        )
+    lines += [
+        "",
+        "## Machine-validated totals",
+        "",
+        f"- Experiments: **{stats['experiments']}**",
+        f"- Closed: **{stats['completed']}**",
+        f"- Succeeded: **{stats['succeeded']}**",
+        f"- Failed with sufficient evidence: **{stats['failed']}**",
+        f"- Inconclusive: **{stats['inconclusive']}**",
+        f"- Verified revenue recorded: **{money(stats['verified_revenue'], currency)}**",
+        "",
+        "Run `python lab.py leaderboard` to regenerate this file from the `experiment.json` records; totals match `python lab.py summary`.",
+    ]
+    interpretation = existing_section(root / "leaderboard.md", "## Interpretation")
+    if interpretation:
+        lines += ["", interpretation]
+    return "\n".join(lines) + "\n"
+
+
+def write_leaderboard(root: Path) -> None:
+    path = root / "leaderboard.md"
+    encoding = "utf-8"
+    newline = "\n"
+    if path.is_file():
+        raw = path.read_bytes()
+        if raw.startswith(b"\xef\xbb\xbf"):
+            encoding = "utf-8-sig"
+        if b"\r\n" in raw:
+            newline = "\r\n"
+    path.write_text(render_leaderboard(root), encoding=encoding, newline=newline)
+
+
+CLOSED_BADGE = re.compile(r"badge/closed%20experiments-[^-)]+-blue")
+REVENUE_BADGE = re.compile(r"badge/verified%20revenue-[^-)]+-lightgrey")
+
+
+def sync_readme_badges(root: Path) -> bool:
+    path = root / "README.md"
+    if not path.is_file():
+        return False
+    raw = path.read_bytes()
+    text = raw.decode("utf-8-sig")
+    stats = summary(root)
+    currency = stats["currencies"][0] if stats["currencies"] else "CNY"
+    revenue = money(stats["verified_revenue"], currency).replace(" ", "%20")
+    updated = CLOSED_BADGE.sub(f"badge/closed%20experiments-{stats['completed']}-blue", text)
+    updated = REVENUE_BADGE.sub(f"badge/verified%20revenue-{revenue}-lightgrey", updated)
+    if updated == text:
+        return False
+    bom = b"\xef\xbb\xbf" if raw.startswith(b"\xef\xbb\xbf") else b""
+    path.write_bytes(bom + updated.encode("utf-8"))
+    return True
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Validate AI Money Lab experiment records.")
-    parser.add_argument("command", choices=["validate", "summary"])
+    parser.add_argument("command", choices=["validate", "summary", "leaderboard"])
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parent)
     args = parser.parse_args(argv)
     errors = validate(args.root)
@@ -119,6 +213,15 @@ def main(argv: list[str] | None = None) -> int:
             print("\n".join(errors))
             return 1
         print(f"OK: {len(manifests(args.root))} experiment manifests validated")
+        return 0
+    if args.command == "leaderboard":
+        if errors:
+            print("\n".join(errors))
+            return 1
+        write_leaderboard(args.root)
+        badges = sync_readme_badges(args.root)
+        note = "README badges updated" if badges else "README badges already current"
+        print(f"OK: leaderboard.md regenerated from {len(manifests(args.root))} experiment manifests ({note})")
         return 0
     if errors:
         print(json.dumps({"errors": errors}, ensure_ascii=False, indent=2))
