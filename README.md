@@ -67,6 +67,51 @@ python -m unittest discover -s tests -v
 
 CI checks required fields, unique IDs, dates, statuses, non-negative revenue, evidence levels, and report links.
 
+## Verified demo output
+
+Captured on 2026-07-20 with Python 3.14.3 (Windows), against commit `main` of this repository. Outputs below are pasted verbatim.
+
+```console
+$ python lab.py validate
+OK: 1 experiment manifests validated
+
+$ python lab.py summary
+{
+  "experiments": 1,
+  "completed": 1,
+  "succeeded": 0,
+  "failed": 0,
+  "inconclusive": 1,
+  "verified_revenue": 0,
+  "currencies": [
+    "CNY"
+  ]
+}
+
+$ python -m unittest discover -s tests -v
+test_completed_status_requires_date_and_conclusion (test_lab.LabTests.test_completed_status_requires_date_and_conclusion) ... ok
+test_completion_date_cannot_precede_start (test_lab.LabTests.test_completion_date_cannot_precede_start) ... ok
+test_missing_report_fails_validation (test_lab.LabTests.test_missing_report_fails_validation) ... ok
+test_nonzero_revenue_requires_verified_evidence (test_lab.LabTests.test_nonzero_revenue_requires_verified_evidence) ... ok
+test_repository_manifests_are_valid (test_lab.LabTests.test_repository_manifests_are_valid) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.012s
+
+OK
+```
+
+The validator also rejects unsupported claims. Pointing `--root` at a scratch directory containing a manifest that declares `succeeded` status, CNY 10 revenue, `self-test` evidence, and a missing report exits 1 and lists every violated rule:
+
+```console
+$ python lab.py validate --root .demo-badroot
+.demo-badroot\experiments\999-bad\experiment.json: non-zero revenue requires verified-revenue evidence
+.demo-badroot\experiments\999-bad\experiment.json: succeeded status requires public-metrics or verified-revenue evidence
+.demo-badroot\experiments\999-bad\experiment.json: report does not exist: missing.md
+.demo-badroot\experiments\999-bad\experiment.json: completed experiments need completed_at
+.demo-badroot\experiments\999-bad\experiment.json: completed experiments need a conclusion
+```
+
 ## Experiment lifecycle
 
 1. Write the customer, problem, offer, price, acquisition channel, metric, and stop rule.
